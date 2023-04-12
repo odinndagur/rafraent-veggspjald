@@ -8,7 +8,7 @@ import { useGLTF } from "@react-three/drei";
 
 export function HjaKronunniSeeingViewNyttTest(props) {
   const { nodes, materials } = useGLTF(
-    "/HjaKronunniSeeingViewNyttTest-transformed.glb",
+    `/rafraent-veggspjald/HjaKronunniSeeingViewNyttTest-transformed.glb`,
   );
   materials['Material_0.001'].transparent = true
   materials['Material_0.001'].opacity = props.opacity
@@ -24,4 +24,4 @@ export function HjaKronunniSeeingViewNyttTest(props) {
   );
 }
 
-useGLTF.preload("/HjaKronunniSeeingViewNyttTest-transformed.glb");
+useGLTF.preload(`/rafraent-veggspjald/HjaKronunniSeeingViewNyttTest-transformed.glb`);
