@@ -78,7 +78,10 @@ function Settings({setVisibilitySlider}){
     <div>
       {/* <div style={{color:'white'}}>lol</div> */}
       <label>
-        Sjónskilyrði
+        <div>
+          Sjónskilyrði
+
+        </div>
         <input type="range" defaultValue={0} min={0} max={1} step={0.001} onChange={(e) => setVisibilitySlider(e.target.value)}/>
       </label>
     </div>
@@ -92,7 +95,7 @@ export default function App() {
       {/* <input type="range" min={0} max={1} step={0.001} onChange={(e) => setVal(e.target.value)} /> */}
       <div style={{
         position:'absolute',
-        bottom:'2rem',
+        top:'3rem',
         zIndex:999,
         width:'50vw',
         left:'50%'
