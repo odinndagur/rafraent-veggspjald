@@ -1,9 +1,6 @@
 import { useControls } from "leva";
 import { map, clamp } from "./map";
 import { Html } from "@react-three/drei";
-// import { HjaKronunniLit } from './Hjakronunnilit';
-import { HjaKronunniBlindView } from "./HjaKronunniBlindView";
-import { HjaKronunniSeeingView } from "./HjaKronunniSeeingView";
 import { HjaKronunniBlindViewNyttTest } from "./HjaKronunniBlindViewNyttTest";
 import { HjaKronunniSeeingViewNyttTest } from "./HjaKronunniSeeingViewNyttTest";
 import { useEffect, useState } from "react";
