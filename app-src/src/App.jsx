@@ -3,8 +3,14 @@ import { Canvas } from "@react-three/fiber";
 import { CameraControls } from "@react-three/drei";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Kronan } from "./KronanScene";
+import { StigiScene } from "./StigiScene";
+import { IcelandScene } from "./IcelandScene";
 
-function Settings({setVisibilitySlider}){
+
+function Settings({setIsChecked,isChecked}){
+  const checkHandler = () => {
+    setIsChecked(!isChecked)
+  }
 
   return (
     <div style={{backgroundColor:'white',maxWidth:'fit-content',display:'flex',flexDirection:'column',padding:'1rem'}}>
@@ -13,14 +19,20 @@ function Settings({setVisibilitySlider}){
           Sjónskilyrði
 
         </div>
-        <input type="range" defaultValue={1} min={0} max={1} step={0.001} onChange={(e) => setVisibilitySlider(e.target.value)}/>
+        <input
+        type="checkbox"
+        id="checkbox"
+        checked={isChecked}
+        onChange={checkHandler}
+      />
       </label>
     </div>
   )
 }
 
 export default function App() {
-  const [visibilitySlider, setVisibilitySlider] = useState(1.0);
+  const [isChecked, setIsChecked] = useState(true)
+
   return (
     <>
       <div style={{
@@ -30,7 +42,7 @@ export default function App() {
         width:'50vw',
         left:'50%'
         }}>
-        <Settings setVisibilitySlider={setVisibilitySlider}/>
+        <Settings setIsChecked={setIsChecked} isChecked={isChecked}/>
       </div>
       <Canvas>
         
@@ -44,7 +56,9 @@ export default function App() {
           opacity={0.5}
           color="#204080"
         /> */}
-        <Kronan opacity={visibilitySlider}/>
+        <Kronan opacity={isChecked}/>
+        {/* <StigiScene seeing={isChecked}/> */}
+        {/* <IcelandScene seeing={isChecked}/> */}
         <color attach="background" args={["#FFF"]} />
         <ambientLight intensity={1} />
         {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}

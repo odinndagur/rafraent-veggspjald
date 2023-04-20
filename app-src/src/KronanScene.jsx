@@ -35,6 +35,7 @@ export function Kronan(props) {
         <Merkimidi position={[0,-1,-0.5]} rotation={[0,0,0]} width='200px' text={'Biðsvæði merkt með punktum á gangstétt'} />
 
     <group>
+      {/* <StigiSeeing /> */}
         <HjaKronunniBlindViewNyttTest opacity={1-opacity} position={position} scale={scale} />
         <HjaKronunniSeeingViewNyttTest opacity={opacity} position={position} scale={scale}/>
       </group>
