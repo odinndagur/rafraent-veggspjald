@@ -66,9 +66,9 @@ export default function App() {
 			<HashRouter>
 				<div className='menu'>
 					<nav>
-						{/* <Link to={'/iceland'}>Gatnamót 1</Link>
+						<Link to={'/iceland'}>Gatnamót 1</Link>
 						<Link to={'/kronan'}>Gatnamót 2</Link>
-						<Link to={'/stigi'}>Stigi</Link> */}
+						<Link to={'/stigi'}>Stigi</Link>
 						<Settings
 							setIsChecked={setIsChecked}
 							isChecked={isChecked}
