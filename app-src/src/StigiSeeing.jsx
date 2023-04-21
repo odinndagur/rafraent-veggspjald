@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function StigiSeeing(props) {
-  const { nodes, materials } = useGLTF('/StigiSeeing-transformed.glb')
+  const { nodes, materials } = useGLTF('/rafraent-veggspjald/StigiSeeing-transformed.glb')
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Mesh_0.geometry} material={materials.Material_0} />
@@ -15,4 +15,4 @@ export function StigiSeeing(props) {
   )
 }
 
-useGLTF.preload('/StigiSeeing-transformed.glb')
+useGLTF.preload('/rafraent-veggspjald/StigiSeeing-transformed.glb')

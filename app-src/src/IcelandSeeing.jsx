@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function IcelandSeeing(props) {
-  const { nodes, materials } = useGLTF('/IcelandSeeing-transformed.glb')
+  const { nodes, materials } = useGLTF('/rafraent-veggspjald/IcelandSeeing-transformed.glb')
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Mesh_0.geometry} material={materials.Material_0} />
@@ -15,4 +15,4 @@ export function IcelandSeeing(props) {
   )
 }
 
-useGLTF.preload('/IcelandSeeing-transformed.glb')
+useGLTF.preload('/rafraent-veggspjald/IcelandSeeing-transformed.glb')
