@@ -1,45 +1,75 @@
-import { useControls } from "leva";
-import { map, clamp } from "./map";
-import { Html } from "@react-three/drei";
-import { HjaKronunniBlindViewNyttTest } from "./HjaKronunniBlindViewNyttTest";
-import { HjaKronunniSeeingViewNyttTest } from "./HjaKronunniSeeingViewNyttTest";
-import { useEffect, useState } from "react";
-import { StigiBlind } from "./StigiBlind";
-import { StigiSeeing } from "./StigiSeeing";
-import { IcelandSeeing } from "./IcelandSeeing";
-import { IcelandBlind } from "./IcelandBlind";
-function Merkimidi({text, position, rotation, width}){
-  return <Html position={position} transform rotation={rotation}>
-          <div style={{
-            width:width,
-            backgroundColor:'white',
-            textAlign:'center',
-            padding:'0.5rem 0.5rem',
-            }}>
-              {text}
-            </div>
-         </Html>
-}
+import { useControls } from 'leva'
+import { map, clamp } from './map'
+import { Merkimidi } from './Merkimidi'
+import { HjaKronunniBlindViewNyttTest } from './HjaKronunniBlindViewNyttTest'
+import { HjaKronunniSeeingViewNyttTest } from './HjaKronunniSeeingViewNyttTest'
+import { useEffect, useState } from 'react'
+import { StigiBlind } from './StigiBlind'
+import { StigiSeeing } from './StigiSeeing'
+import { IcelandSeeing } from './IcelandSeeing'
+import { IcelandBlind } from './IcelandBlind'
+// function Merkimidi({ text, position, rotation, width, bad }) {
+// 	return (
+// 		<Html position={position} transform rotation={rotation}>
+// 			<div
+// 				style={{
+// 					width: width,
+// 					backgroundColor: 'white',
+// 					textAlign: 'center',
+// 					padding: '0.5rem 0.5rem',
+//           textDecoration:'strikethrough'
+// 				}}
+// 			>
+// 				{bad && <s style={{color:'red'}}>{text}</s>}
+//         {!bad && <p style={{color:'green'}}>{text}</p>}
+// 			</div>
+// 		</Html>
+// 	)
+// }
 
 export function IcelandScene(props) {
-  const position = [0,-1,-4]
-  const scale = [1,1,1]
-  return (
-        <group>
-      
+	const position = [0, -1, -4]
+	const scale = [1, 1, 1]
+	return (<>
+		{props.showLabels && <group>
+			<Merkimidi
+				position={[3.5, 0.2, -3.5]}
+				rotation={[0, Math.PI * 1.5 + 0.2, 0]}
+				width='100px'
+				text={'Ómerkt miðja'}
+        bad
+        />
+		<Merkimidi
+				position={[-2, 0.2, -3.5]}
+				rotation={[0, Math.PI * 1.5 + 0.2, 0]}
+				width='150px'
+				text={'Punktar merkja byrjun gangbrautar'}
+        good
+        />
+        <Merkimidi
+				position={[11, -0.1, -3.5]}
+				rotation={[0, Math.PI * 1.5 + 0.2, 0]}
+				width='100px'
+				text={'Sprungur í gangstétt'}
+        bad
+        />
+			</group>}
+      <group>
+				{props.seeing && (
+          <IcelandSeeing
+          position={position}
+          scale={scale}
+          rotation={[0, 0, 0]}
+					/>
+          )}
+				{!props.seeing && <IcelandBlind position={position} scale={scale} />}
 
-      <Merkimidi position={[3.5,0.2,-3.1]} rotation={[0,Math.PI*1.5,0]} width='100px' text={'Ómerkt miðja'} />
-      {/* <Merkimidi position={[-0.5,-0.3,-4.3]} rotation={[0,Math.PI*0.5,0]} width='180px' text={'Punktar merkja byrjun (of mjó merking)'} />
-      <Merkimidi position={[6,-3,-4.3]} rotation={[Math.PI/2,Math.PI,Math.PI*1.5]} width='120px' text={'Punktar merkja enda'} />
-      <Merkimidi position={[1.5,-1,-7.3]} rotation={[Math.PI/2,Math.PI,Math.PI*1.5]} width='200px' text={'Brött brekka beint við hliðina á stiganum'} /> */}
-
-    <group>
-      {props.seeing && <IcelandSeeing position={position} scale={scale} rotation={[0,-0.2,0]}/>}
-      {!props.seeing && <IcelandBlind position={position} scale={scale} />}
-
-        {/* <HjaKronunniBlindViewNyttTest opacity={1-opacity} position={position} scale={scale} />
+				{/* <HjaKronunniBlindViewNyttTest opacity={1-opacity} position={position} scale={scale} />
         <HjaKronunniSeeingViewNyttTest opacity={opacity} position={position} scale={scale}/> */}
-      </group>
-    </group>
-  );
+			</group>
+		{/* </group> */}
+
+        </>
+
+	)
 }

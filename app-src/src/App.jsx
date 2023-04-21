@@ -9,60 +9,86 @@ import { IcelandScene } from './IcelandScene'
 import ReactDOM from 'react-dom/client'
 import { HashRouter, Link, Route, Routes } from 'react-router-dom'
 
-function Settings({ setIsChecked, isChecked }) {
+function Settings({ setIsChecked, isChecked, showLabels, setShowLabels }) {
 	const checkHandler = () => {
 		setIsChecked(!isChecked)
 	}
 
+	const labelHandler = () => {
+		setShowLabels(!showLabels)
+	}
 	return (
 		<div
 			style={{
-				backgroundColor: 'white',
+				backgroundColor: '#f0f0f0',
 				maxWidth: 'fit-content',
 				display: 'flex',
-				flexDirection: 'column',
+				flexDirection: 'row',
+				justifyContent: 'space-between',
 				padding: '1rem',
+				fontSize: '1.5rem',
 			}}
 		>
-			<label>
-				<div>Sjónskilyrði</div>
-				<input
-					type='checkbox'
-					id='checkbox'
-					checked={isChecked}
-					onChange={checkHandler}
-				/>
-			</label>
+			<div>
+				<label>
+					Sjónskilyrði
+					<input
+						type='checkbox'
+						id='checkbox'
+						checked={isChecked}
+						onChange={checkHandler}
+					/>
+				</label>
+			</div>
+
+			<div style={{ width: '2rem' }}></div>
+
+			<div>
+				<label>
+					Merkingar
+					<input
+						type='checkbox'
+						id='checkbox'
+						checked={showLabels}
+						onChange={labelHandler}
+					/>
+				</label>
+			</div>
 		</div>
 	)
 }
 
 export default function App() {
 	const [isChecked, setIsChecked] = useState(true)
+	const [showLabels, setShowLabels] = useState(true)
 	return (
 		<>
-
 			<HashRouter>
 				<div className='menu'>
 					<nav>
-						<Link to={'/iceland'}>Gatnamót 1</Link>
+						{/* <Link to={'/iceland'}>Gatnamót 1</Link>
 						<Link to={'/kronan'}>Gatnamót 2</Link>
-						<Link to={'/stigi'}>Stigi</Link>
-						<Settings setIsChecked={setIsChecked} isChecked={isChecked} />
+						<Link to={'/stigi'}>Stigi</Link> */}
+						<Settings
+							setIsChecked={setIsChecked}
+							isChecked={isChecked}
+							showLabels={showLabels}
+							setShowLabels={setShowLabels}
+						/>
 					</nav>
 				</div>
 				<Canvas>
 					<Routes>
 						<Route
 							path='iceland'
-							element={<IcelandScene seeing={isChecked} />}
+							element={<IcelandScene seeing={isChecked} showLabels={showLabels} />}
 						/>
-						<Route path='kronan' element={<Kronan opacity={isChecked} />} />
-						<Route path='stigi' element={<StigiScene seeing={isChecked} />} />
+						<Route path='kronan' element={<Kronan opacity={isChecked} showLabels={showLabels} />} />
+						<Route path='stigi' element={<StigiScene seeing={isChecked} showLabels={showLabels} />} />
 					</Routes>
 					<color attach='background' args={['#f0f0f0']} />
 					<ambientLight intensity={1} />
-					<PerspectiveCamera makeDefault position={[9, 4, 8]} fov={70}/>
+					<PerspectiveCamera makeDefault position={[9, 4, 8]} fov={70} />
 					<CameraControls />
 				</Canvas>
 			</HashRouter>
