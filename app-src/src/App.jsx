@@ -6,6 +6,9 @@ import { Kronan } from "./KronanScene";
 import { StigiScene } from "./StigiScene";
 import { IcelandScene } from "./IcelandScene";
 
+import ReactDOM from "react-dom/client"
+import App from "./App"
+import { HashRouter, Route, Routes } from "react-router-dom"
 
 function Settings({setIsChecked,isChecked}){
   const checkHandler = () => {
@@ -32,7 +35,6 @@ function Settings({setIsChecked,isChecked}){
 
 export default function App() {
   const [isChecked, setIsChecked] = useState(true)
-
   return (
     <>
       <div style={{
@@ -45,24 +47,13 @@ export default function App() {
         <Settings setIsChecked={setIsChecked} isChecked={isChecked}/>
       </div>
       <Canvas>
-        
-        {/* <Environment preset="city" /> */}
-        {/* <ContactShadows
-          frames={1}
-          scale={5}
-          position={[0, -1, 0]}
-          far={1}
-          blur={5}
-          opacity={0.5}
-          color="#204080"
-        /> */}
-        <Kronan opacity={isChecked}/>
-        {/* <StigiScene seeing={isChecked}/> */}
-        {/* <IcelandScene seeing={isChecked}/> */}
+        <HashRouter>
+          <IcelandScene seeing={isChecked}/>
+          <Kronan opacity={isChecked}/>
+          <StigiScene seeing={isChecked}/>
+        </HashRouter>
         <color attach="background" args={["#FFF"]} />
         <ambientLight intensity={1} />
-        {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
-        {/* <pointLight position={[-10, -10, -10]} /> */}
         <PerspectiveCamera makeDefault position={[9,4,8]} fov={70}/>
         <CameraControls />
       </Canvas>
